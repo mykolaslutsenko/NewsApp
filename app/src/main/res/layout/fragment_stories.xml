@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/news_height">
+
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:id="@+id/ll_slider_dots"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    />-->
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_top_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:foregroundGravity="center"
+                    android:overScrollMode="never"
+                     />
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/offset_24"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/bg_round_left"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_margin="@dimen/offset_8"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/ic_whatshot"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_margin="@dimen/offset_8"
+                        android:layout_width="match_parent"
+                        android:text="@string/top"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_stories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fl_top"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="@dimen/news_height"/>-->
+
+
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_margin="@dimen/offset_16"
+            android:layout_width="@dimen/offset_24"
+            android:src="@drawable/ic_dehaze"
+            android:layout_height="@dimen/offset_24"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/offset_16"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="@string/news"
+            android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <ImageView
+            android:layout_margin="@dimen/offset_16"
+            android:layout_width="@dimen/offset_24"
+            android:src="@drawable/ic_search"
+            android:layout_height="@dimen/offset_24"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/colorAccentDark"
+        android:id="@+id/news_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            app:tabTextColor="@color/colorAccentDark"
+            android:background="@color/colorPrimary"
+            android:id="@+id/tl_news"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+           >
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp2_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager2.widget.ViewPager2>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "593958146160",
+    "firebase_url": "https://test-project-slutsenko.firebaseio.com",
+    "project_id": "test-project-slutsenko",
+    "storage_bucket": "test-project-slutsenko.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593958146160:android:5fd541a46ad423700c24b5",
+        "android_client_info": {
+          "package_name": "com.slutsenko.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593958146160-suel8b7b9g01qmfmmvg08afll1tkb0s1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ-VBJddofyusvVPETttZPnDiN9HrSzvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593958146160-suel8b7b9g01qmfmmvg08afll1tkb0s1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

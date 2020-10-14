@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/offset_16"
+    android:elevation="@dimen/offset_16"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <ImageView
+
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/iv_top_image"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+
+        android:adjustViewBounds="true"
+        android:layout_height="match_parent"
+        />
+
+    <LinearLayout
+        android:padding="@dimen/offset_16"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+        <TextView
+            android:elevation="@dimen/offset_8"
+            android:id="@+id/txt_top_title"
+            android:layout_width="match_parent"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:textColor="@color/colorAccentDark"
+            android:textSize="32sp" />
+
+        <LinearLayout
+
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/txt_top_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorSite" />
+
+            <TextView
+                android:id="@+id/txt_top_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTime" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>
