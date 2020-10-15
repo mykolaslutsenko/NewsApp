@@ -1,25 +1,20 @@
 package com.slutsenko.newsapp.presentation.ui.main
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.google.android.material.tabs.TabLayoutMediator
-import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
+import com.google.android.material.tabs.TabLayout
 import com.slutsenko.newsapp.R
 import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter
 import com.slutsenko.newsapp.presentation.adapter.TopNewsAdapter
 import com.slutsenko.newsapp.presentation.const.NewsType
+import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_stories.*
 import kotlinx.android.synthetic.main.widget_top_news.*
 
@@ -57,8 +52,10 @@ class StoriesFragment : Fragment() {
                 viewModel.topNewsLiveData.value ?: emptyList()
             )
             vp_top_news.adapter = topNewsAdapter
+            val tab: TabLayout = requireActivity().findViewById<TabLayout>(R.id.tl_top_news)
+            tab.setupWithViewPager(vp_top_news, true)
         })
 
 
     }
-    }
+}

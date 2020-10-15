@@ -50,7 +50,7 @@ class VideoFragment : Fragment() {
                 requireContext(),
                 viewModel.topNewsLiveData.value ?: emptyList()
             )
-            vp_top_news.adapter = topNewsAdapter
+            //vp_top_news.adapter = topNewsAdapter
         })
 
     }

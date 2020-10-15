@@ -20,12 +20,21 @@
         android:id="@+id/vp_top_news"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:overScrollMode="never" />
+        android:overScrollMode="never" >
 
-    <TableLayout
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.tabs.TabLayout
+        app:tabBackground="@drawable/tab_selector"
+        android:layout_gravity="bottom"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
         android:id="@+id/tl_top_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
 
 
 
