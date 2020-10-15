@@ -1,4 +1,4 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.slutsenko.newsapp.network.model.NewsModel
+import com.slutsenko.newsapp.R
 
 class TopNewsAdapter(var context: Context, var topNewsList: List<NewsModel>) : PagerAdapter() {
     override fun isViewFromObject(

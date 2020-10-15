@@ -1,4 +1,4 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.slutsenko.newsapp.network.model.NewsModel
+import com.slutsenko.newsapp.R
+import com.slutsenko.newsapp.presentation.ui.web.WebViewActivity
 
 class NewsRecyclerAdapter(private val context: Context, private val newsList: List<NewsModel>) :
     RecyclerView.Adapter<NewsRecyclerAdapter.NewsViewHolder>() {

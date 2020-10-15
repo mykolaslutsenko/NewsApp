@@ -1,4 +1,4 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_stories.*
-import kotlinx.android.synthetic.main.fragment_video.*
+import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
+import com.slutsenko.newsapp.R
+import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter
+import kotlinx.android.synthetic.main.fragment_favourites.*
 
-class VideoFragment: Fragment() {
+class FavouritesFragment:Fragment() {
 
     private lateinit var newsAdapter: NewsRecyclerAdapter
     lateinit var viewModel: NewsViewModel
@@ -22,7 +24,7 @@ class VideoFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_video, container, false)
+        return inflater.inflate(R.layout.fragment_favourites, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,15 +32,21 @@ class VideoFragment: Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(NewsViewModel::class.java)
 
         newsAdapter =
-            NewsRecyclerAdapter(requireContext(), viewModel.videoLiveData.value ?: emptyList())
-        rv_video.layoutManager =
+            NewsRecyclerAdapter(
+                requireContext(),
+                viewModel.favouriteLiveData.value ?: emptyList()
+            )
+        rv_favourites.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rv_video.adapter = newsAdapter
+        rv_favourites.adapter = newsAdapter
 
         viewModel.newsLiveData.observe(requireActivity(), Observer {
             newsAdapter =
-                NewsRecyclerAdapter(requireContext(), viewModel.videoLiveData.value ?: emptyList())
-            rv_video.adapter = newsAdapter
+                NewsRecyclerAdapter(
+                    requireContext(),
+                    viewModel.favouriteLiveData.value ?: emptyList()
+                )
+            rv_favourites.adapter = newsAdapter
         })
     }
 }

@@ -1,14 +1,14 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.ui.web
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.webkit.CookieManager
 import android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
-import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import com.slutsenko.newsapp.NewsRecyclerAdapter.Companion.EXTRA_URL
+import com.slutsenko.newsapp.R
+import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter.Companion.EXTRA_URL
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : AppCompatActivity() {

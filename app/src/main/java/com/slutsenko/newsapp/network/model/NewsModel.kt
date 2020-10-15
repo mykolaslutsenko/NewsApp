@@ -1,8 +1,8 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.network.model
 
 import com.google.gson.annotations.SerializedName
 
- class NewsModel (
+ data class NewsModel (
 
 //     @SerializedName("name")
 //     val name: String? ,

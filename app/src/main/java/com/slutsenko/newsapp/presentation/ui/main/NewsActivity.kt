@@ -1,10 +1,15 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayoutMediator
+import com.slutsenko.newsapp.network.service.NewsApiService
+import com.slutsenko.newsapp.network.model.NewsModel
+import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
+import com.slutsenko.newsapp.R
+import com.slutsenko.newsapp.presentation.adapter.NewsPageAdapter
 import kotlinx.android.synthetic.main.activity_news.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,12 +21,12 @@ class NewsActivity : AppCompatActivity() {
 
     lateinit var viewModel: NewsViewModel
 
-    lateinit var newsApiService: NewsApiService
+//    lateinit var newsApiService: NewsApiService
 
 
-    init {
-        provideRetrofit()
-    }
+//    init {
+//        provideRetrofit()
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,28 +53,28 @@ class NewsActivity : AppCompatActivity() {
         }.attach()
     }
 
-    private fun provideRetrofit() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://188.40.167.45:3001/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        newsApiService = retrofit.create(NewsApiService::class.java)
-    }
+//    private fun provideRetrofit() {
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://188.40.167.45:3001/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//        newsApiService = retrofit.create(NewsApiService::class.java)
+//    }
 
     private fun getNews() {
-        val call = newsApiService.getNews("?page=2")
-        call.enqueue(object : Callback<List<NewsModel>> {
-            override fun onResponse(
-                call: Call<List<NewsModel>>,
-                response: Response<List<NewsModel>>
-            ) {
-                viewModel.newsLiveData.value = response.body()
-            }
-
-            override fun onFailure(call: Call<List<NewsModel>>, t: Throwable) {
-                //Toast.makeText(this, t.message, Toast.LENGTH_LONG).show()
-            }
-        })
+//        val call = newsApiService.getNews("?page=2")
+//        call.enqueue(object : Callback<List<NewsModel>> {
+//            override fun onResponse(
+//                call: Call<List<NewsModel>>,
+//                response: Response<List<NewsModel>>
+//            ) {
+//                viewModel.newsLiveData.value = response.body()
+//            }
+//
+//            override fun onFailure(call: Call<List<NewsModel>>, t: Throwable) {
+//                //Toast.makeText(this, t.message, Toast.LENGTH_LONG).show()
+//            }
+//        })
     }
 
     private fun setNewsTypeLiveData(news: List<NewsModel>?) {

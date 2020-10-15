@@ -14,14 +14,14 @@
         android:theme="@style/AppTheme" >
 
 
-        <activity android:name=".NewsActivity">
+        <activity android:name="com.slutsenko.newsapp.presentation.ui.main.NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".WebViewActivity"
+        <activity android:name="com.slutsenko.newsapp.presentation.ui.web.WebViewActivity"
             android:configChanges="orientation">
         </activity>
 

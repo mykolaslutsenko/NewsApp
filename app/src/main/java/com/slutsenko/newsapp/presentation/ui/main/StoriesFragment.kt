@@ -1,19 +1,19 @@
-package com.slutsenko.newsapp
+package com.slutsenko.newsapp.presentation.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
+import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
+import com.slutsenko.newsapp.R
+import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter
+import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter
+import com.slutsenko.newsapp.presentation.adapter.TopNewsAdapter
 import kotlinx.android.synthetic.main.fragment_stories.*
 
 class StoriesFragment : Fragment() {
@@ -34,21 +34,38 @@ class StoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(NewsViewModel::class.java)
-        newsAdapter =
-            NewsRecyclerAdapter(requireContext(), viewModel.storiesLiveData.value ?: emptyList())
+//        newsAdapter =
+//            NewsRecyclerAdapter(
+//                requireContext(),
+//                viewModel.storiesLiveData.value ?: emptyList()
+//            )
         rv_stories.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rv_stories.adapter = newsAdapter
+//        rv_stories.adapter = newsAdapter
 
-        viewModel.newsLiveData.observe(requireActivity(), Observer {
-            newsAdapter =
-                NewsRecyclerAdapter(requireContext(), viewModel.storiesLiveData.value ?: emptyList())
-            rv_stories.adapter = newsAdapter
+
+        viewModel.pagedListLiveData.observe(requireActivity(), Observer {
+            val adapter = PagingNewsAdapter()
+            adapter.submitList(it)
+            rv_stories.adapter = adapter
         })
 
-        viewModel.topNewsLiveData.observe(requireActivity(), Observer {
-            topNewsAdapter = TopNewsAdapter(requireContext(), viewModel.topNewsLiveData.value?: emptyList())
-            vp_top_news.adapter = topNewsAdapter
+        viewModel.newsLiveData.observe(requireActivity(), Observer {
+//            newsAdapter =
+//                NewsRecyclerAdapter(
+//                    requireContext(),
+//                    viewModel.storiesLiveData.value ?: emptyList()
+//                )
+//            rv_stories.adapter = newsAdapter
+        })
+    }
+
+//        viewModel.topNewsLiveData.observe(requireActivity(), Observer {
+//            topNewsAdapter = TopNewsAdapter(
+//                requireContext(),
+//                viewModel.topNewsLiveData.value ?: emptyList()
+//            )
+//            vp_top_news.adapter = topNewsAdapter
 
 //            dotscount = topNewsAdapter.count
 //            val dots = arrayOfNulls<ImageView>(dotscount)
@@ -85,15 +102,18 @@ class StoriesFragment : Fragment() {
 //                    )
 //                }
 //            })
-        })
-        configureTopNewsView()
-    }
-
-    private fun configureTopNewsView() {
-        topNewsAdapter = TopNewsAdapter(requireContext(), viewModel.topNewsLiveData.value?: emptyList())
-        vp_top_news.adapter = topNewsAdapter
-
-    }
+//        })
+//        configureTopNewsView()
+//    }
+//
+//    private fun configureTopNewsView() {
+//        topNewsAdapter = TopNewsAdapter(
+//            requireContext(),
+//            viewModel.topNewsLiveData.value ?: emptyList()
+//        )
+//        vp_top_news.adapter = topNewsAdapter
+//
+//    }
 
 
 }
