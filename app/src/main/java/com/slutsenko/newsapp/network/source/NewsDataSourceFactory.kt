@@ -1,10 +1,9 @@
-package com.slutsenko.newsapp.network
+package com.slutsenko.newsapp.network.source
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.DataSource.Factory
 import com.slutsenko.newsapp.network.model.NewsModel
-import com.slutsenko.newsapp.network.service.NewsApiService
 
 
 class NewsDataSourceFactory(): Factory<String, NewsModel>() {
@@ -13,7 +12,8 @@ class NewsDataSourceFactory(): Factory<String, NewsModel>() {
 
 
     override fun create(): DataSource<String, NewsModel> {
-        val newsDataSource = NewsDataSource()
+        val newsDataSource =
+            NewsDataSource()
         newsDataSourceLiveData.postValue(newsDataSource)
         return newsDataSource
     }

@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
 import com.slutsenko.newsapp.R
-import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter
+import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter
+import com.slutsenko.newsapp.presentation.const.NewsType
 import kotlinx.android.synthetic.main.fragment_video.*
 
 class VideoFragment: Fragment() {
 
-    private lateinit var newsAdapter: NewsRecyclerAdapter
     lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
@@ -31,22 +31,16 @@ class VideoFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(NewsViewModel::class.java)
 
-        newsAdapter =
-            NewsRecyclerAdapter(
-                requireContext(),
-                viewModel.videoLiveData.value ?: emptyList()
-            )
         rv_video.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rv_video.adapter = newsAdapter
 
-        viewModel.newsLiveData.observe(requireActivity(), Observer {
-            newsAdapter =
-                NewsRecyclerAdapter(
-                    requireContext(),
-                    viewModel.videoLiveData.value ?: emptyList()
-                )
-            rv_video.adapter = newsAdapter
+        viewModel.pagedListLiveData.observe(requireActivity(), Observer {
+            val adapter = PagingNewsAdapter(NewsType.VIDEO.key)
+            adapter.submitList(viewModel.pagedListLiveData.value)
+            rv_video.adapter = adapter
         })
+
     }
+
+
 }

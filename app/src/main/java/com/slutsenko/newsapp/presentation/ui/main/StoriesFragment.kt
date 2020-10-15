@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
 import com.slutsenko.newsapp.R
-import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter
 import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter
 import com.slutsenko.newsapp.presentation.adapter.TopNewsAdapter
+import com.slutsenko.newsapp.presentation.const.NewsType
 import kotlinx.android.synthetic.main.fragment_stories.*
 
 class StoriesFragment : Fragment() {
 
-    private lateinit var newsAdapter: NewsRecyclerAdapter
+
     private lateinit var topNewsAdapter: TopNewsAdapter
     lateinit var viewModel: NewsViewModel
     private var dotscount = 0
@@ -34,30 +34,16 @@ class StoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(NewsViewModel::class.java)
-//        newsAdapter =
-//            NewsRecyclerAdapter(
-//                requireContext(),
-//                viewModel.storiesLiveData.value ?: emptyList()
-//            )
+
         rv_stories.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-//        rv_stories.adapter = newsAdapter
-
 
         viewModel.pagedListLiveData.observe(requireActivity(), Observer {
-            val adapter = PagingNewsAdapter()
-            adapter.submitList(it)
+            val adapter = PagingNewsAdapter(NewsType.STORIES.key)
+            adapter.submitList(viewModel.pagedListLiveData.value)
             rv_stories.adapter = adapter
         })
 
-        viewModel.newsLiveData.observe(requireActivity(), Observer {
-//            newsAdapter =
-//                NewsRecyclerAdapter(
-//                    requireContext(),
-//                    viewModel.storiesLiveData.value ?: emptyList()
-//                )
-//            rv_stories.adapter = newsAdapter
-        })
     }
 
 //        viewModel.topNewsLiveData.observe(requireActivity(), Observer {

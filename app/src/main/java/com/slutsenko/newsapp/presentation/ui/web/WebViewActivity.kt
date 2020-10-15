@@ -8,7 +8,7 @@ import android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.slutsenko.newsapp.R
-import com.slutsenko.newsapp.presentation.adapter.NewsRecyclerAdapter.Companion.EXTRA_URL
+import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter.Companion.EXTRA_URL
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : AppCompatActivity() {
