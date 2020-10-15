@@ -5,5 +5,6 @@
     <string name="video">VIDEO</string>
     <string name="favourites">FAVOURITES</string>
     <string name="top">TOP</string>
+    <string name="check_internet">Check your internet connection</string>
 
 </resources>

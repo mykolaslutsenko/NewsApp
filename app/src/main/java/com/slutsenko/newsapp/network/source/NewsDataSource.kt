@@ -8,30 +8,30 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsDataSource() : PageKeyedDataSource<String, NewsModel>() {
+class NewsDataSource : PageKeyedDataSource<Int, NewsModel>() {
 
 
     override fun loadInitial(
-        params: LoadInitialParams<String>,
-        callback: LoadInitialCallback<String, NewsModel>
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, NewsModel>
     ) {
-        val key: Int = 1
+        val key = 1
         val newsApiService = RetrofitInstance.newsRetrofit.create(NewsApiService::class.java)
-        val data = newsApiService.getNews(key.toString())
+        val data = newsApiService.getNews(key)
         data.enqueue(object : Callback<List<NewsModel>> {
             override fun onResponse(
                 call: Call<List<NewsModel>>,
                 response: Response<List<NewsModel>>
             ) {
                 val newsList: MutableList<NewsModel> = response.body() as MutableList<NewsModel>
-                callback.onResult(newsList, key.toString(), (key + 1).toString())
+                callback.onResult(newsList, key, (key + 1))
             }
 
             override fun onFailure(call: Call<List<NewsModel>>, t: Throwable) {}
         })
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, NewsModel>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, NewsModel>) {
         val newsApiService = RetrofitInstance.newsRetrofit.create(NewsApiService::class.java)
         val data = newsApiService.getNews(params.key)
         data.enqueue(object : Callback<List<NewsModel>> {
@@ -40,14 +40,12 @@ class NewsDataSource() : PageKeyedDataSource<String, NewsModel>() {
                 response: Response<List<NewsModel>>
             ) {
                 val newsList: MutableList<NewsModel> = response.body() as MutableList<NewsModel>
-                callback.onResult(newsList, (params.key.toLong() + 1).toString())
+                callback.onResult(newsList, (params.key + 1))
             }
 
             override fun onFailure(call: Call<List<NewsModel>>, t: Throwable) {}
         })
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, NewsModel>) {
-
-    }
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, NewsModel>) {}
 }

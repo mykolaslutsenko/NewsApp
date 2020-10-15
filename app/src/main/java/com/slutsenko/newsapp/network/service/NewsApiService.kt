@@ -10,16 +10,6 @@ import retrofit2.http.Url
 interface NewsApiService {
 
     @GET(".")
-    fun getNews(@Query("page") page: String?): Call<List<NewsModel>>
+    fun getNews(@Query("page") page: Int?): Call<List<NewsModel>>
 
-//    companion object {
-//        fun getService() : NewsApiService {
-//            val retrofit = Retrofit.Builder()
-//                .baseUrl("http://188.40.167.45:3001/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//
-//            return retrofit.create(NewsApiService::class.java)
-//        }
-//    }
 }

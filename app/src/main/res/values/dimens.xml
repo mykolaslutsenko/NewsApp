@@ -4,10 +4,8 @@
     <dimen name="icon_size_regular">24dp</dimen>
     <dimen name="btn_radius">16dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="news_height">320dp</dimen>
-    <dimen name="image_height">200dp</dimen>
-
-
+    <dimen name="news_height">200dp</dimen>
+    <dimen name="image_height">120dp</dimen>
 
     <dimen name="offset_4">4dp</dimen>
     <dimen name="offset_8">8dp</dimen>

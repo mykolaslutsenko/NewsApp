@@ -7,17 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.slutsenko.newsapp.presentation.viewmodel.NewsViewModel
 import com.slutsenko.newsapp.R
 import com.slutsenko.newsapp.presentation.adapter.PagingNewsAdapter
+import com.slutsenko.newsapp.presentation.adapter.TopNewsAdapter
 import com.slutsenko.newsapp.presentation.const.NewsType
 import kotlinx.android.synthetic.main.fragment_favourites.*
+import kotlinx.android.synthetic.main.widget_top_news.*
 
 class FavouritesFragment:Fragment() {
 
     lateinit var viewModel: NewsViewModel
+    private lateinit var topNewsAdapter: TopNewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +42,14 @@ class FavouritesFragment:Fragment() {
             val adapter = PagingNewsAdapter(NewsType.FAVOURITES.key)
             adapter.submitList(viewModel.pagedListLiveData.value)
             rv_favourites.adapter = adapter
+        })
+
+        viewModel.topNewsLiveData.observe(requireActivity(), Observer {
+            topNewsAdapter = TopNewsAdapter(
+                requireContext(),
+                viewModel.topNewsLiveData.value ?: emptyList()
+            )
+            vp_top_news.adapter = topNewsAdapter
         })
     }
 }

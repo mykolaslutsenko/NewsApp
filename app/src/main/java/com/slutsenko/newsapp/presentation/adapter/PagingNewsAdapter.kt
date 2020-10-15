@@ -7,34 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
-import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.slutsenko.newsapp.R
 import com.slutsenko.newsapp.network.model.NewsModel
-import com.slutsenko.newsapp.presentation.ui.main.NewsActivity
 import com.slutsenko.newsapp.presentation.ui.web.WebViewActivity
 
-class PagingNewsAdapter(var typeKey: String): PagedListAdapter<NewsModel, PagingNewsAdapter.PagingNewsViewHolder>(newsDiffCallback) {
+class PagingNewsAdapter(var typeKey: String) :
+    PagedListAdapter<NewsModel, RecyclerView.ViewHolder>(newsDiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingNewsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.widget_news, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view =
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.widget_regular_news, parent, false)
         return PagingNewsViewHolder(view)
     }
 
+
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: PagingNewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         val news = getItem(position)
+
         if (news?.type == typeKey) {
-            holder.itemView.visibility = View.VISIBLE;
-            holder.itemView.layoutParams = RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            with(holder) {
+            holder.itemView.visibility = View.VISIBLE
+            holder.itemView.layoutParams = RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            with(holder as PagingNewsViewHolder) {
                 title.text = news.title
-                //site.text = news.click_url
-                site.text = position.toString()
+                site.text = news.click_url
                 time.text = " - " + news.time
 
                 Glide.with(holder.itemView.context)
@@ -42,15 +47,14 @@ class PagingNewsAdapter(var typeKey: String): PagedListAdapter<NewsModel, Paging
                     .centerCrop()
                     .into(this.image)
             }
-        }
-        else {
-            holder.itemView.visibility = View.GONE;
+        } else {
+            holder.itemView.visibility = View.GONE
             holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
         }
-
     }
 
-    inner class PagingNewsViewHolder(item: View): RecyclerView.ViewHolder(item) {
+
+    inner class PagingNewsViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         var image: ImageView = itemView.findViewById(R.id.iv_image)
         var title: TextView = itemView.findViewById(R.id.txt_title)
@@ -67,8 +71,6 @@ class PagingNewsAdapter(var typeKey: String): PagedListAdapter<NewsModel, Paging
 
     }
 
-
-
     companion object {
         val newsDiffCallback = object : DiffUtil.ItemCallback<NewsModel>() {
             override fun areItemsTheSame(oldItem: NewsModel, newItem: NewsModel): Boolean {
@@ -80,7 +82,7 @@ class PagingNewsAdapter(var typeKey: String): PagedListAdapter<NewsModel, Paging
             }
         }
 
-        val EXTRA_URL = "EXTRA_URL"
+        const val EXTRA_URL = "EXTRA_URL"
     }
 
 }
