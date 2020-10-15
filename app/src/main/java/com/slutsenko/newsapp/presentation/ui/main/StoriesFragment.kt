@@ -52,8 +52,7 @@ class StoriesFragment : Fragment() {
                 viewModel.topNewsLiveData.value ?: emptyList()
             )
             vp_top_news.adapter = topNewsAdapter
-            val tab: TabLayout = requireActivity().findViewById<TabLayout>(R.id.tl_top_news)
-            tab.setupWithViewPager(vp_top_news, true)
+            tl_top_news.setupWithViewPager(vp_top_news, true)
         })
 
 
